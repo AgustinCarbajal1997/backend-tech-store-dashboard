@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
-const storage = require("./config/multer");
+const storage = require("./src/config/multer");
 require("dotenv").config();
 const app = express();
-const { auth, products } = require("./routes");
-require("./db/mongo_connection");
+const { auth, products } = require("./src/routes");
+require("./src/db/mongo_connection");
 
 const PORT = process.env.PORT || 3000;
 
