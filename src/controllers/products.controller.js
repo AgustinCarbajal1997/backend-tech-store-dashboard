@@ -1,5 +1,5 @@
 const products = require("../services/products.services");
-
+const errorHandle = require("../utils/functions/errorHandle");
 const postProduct = async (req, res) => {
   const {
     brand,
@@ -26,7 +26,7 @@ const postProduct = async (req, res) => {
     });
     return res.status(data.status).json(data);
   } catch (error) {
-    res.status(error.status).json({ message: error.message });
+    errorHandle(res, error);
   }
 };
 const postImage = async (req, res) => {
@@ -34,7 +34,7 @@ const postImage = async (req, res) => {
     const data = await products.postImage(req.file, req.body.productId);
     return res.status(data.status).json(data);
   } catch (error) {
-    res.status(error.status).json({ message: error.message });
+    errorHandle(res, error);
   }
 };
 
@@ -67,7 +67,7 @@ const putProduct = async (req, res) => {
     );
     return res.status(data.status).json(data);
   } catch (error) {
-    res.status(error.status).json({ message: error.message });
+    errorHandle(res, error);
   }
 };
 const deleteProduct = async (req, res) => {
@@ -75,7 +75,7 @@ const deleteProduct = async (req, res) => {
     const data = await products.deleteProduct(req.params.id);
     return res.status(data.status).json(data);
   } catch (error) {
-    res.status(error.status).json({ message: error.message });
+    errorHandle(res, error);
   }
 };
 module.exports = {
